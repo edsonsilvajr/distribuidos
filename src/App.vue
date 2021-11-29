@@ -43,7 +43,6 @@
 
 <script>
 import net from 'net'
-import split from 'split'
 import { mapMutations, mapState, mapActions } from 'vuex'
 import Snackbar from './components/Snackbar'
 
@@ -64,12 +63,10 @@ export default {
   mounted() {
     this.socket = new net.Socket()
     this.ip = 'localhost'
-    this.porta = '8082'
+    this.porta = '16314'
     this.conectado = false
 
-    this.stream = this.socket.pipe(split())
-
-    this.stream.on('data', (response) => {
+    this.socket.on('data', (response) => {
       console.log('Recebido:' + response)
       this.SET_INCOMINGMESSAGE(response)
     })
@@ -93,12 +90,13 @@ export default {
         this.conectado = true
         this.$router.push({ name: 'Login' })
       })
-      this.socket.write('cheguei 8)')
     },
     Disconnect() {
       this.socket.destroy()
       this.conectado = false
-      this.$router.push({ name: 'Dashboard' })
+      if (this.$router.history.current.path != '/') {
+        this.$router.push({ name: 'Dashboard' })
+      }
     },
   },
   computed: {

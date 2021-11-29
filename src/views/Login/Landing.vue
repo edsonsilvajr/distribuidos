@@ -54,9 +54,13 @@
     >
     </v-select>
 
-    <v-btn @click="update">{{
-      updating ? 'Atualizar cadastro' : 'Requisitar alteração'
-    }}</v-btn>
+    <div class="button-wrapper">
+      <v-btn @click="update">{{
+        updating ? 'Atualizar cadastro' : 'Requisitar alteração'
+      }}</v-btn>
+
+      <v-btn @click="logout" color="red" class="mt-4">Logout</v-btn>
+    </div>
   </div>
 </template>
 
@@ -82,6 +86,12 @@ export default {
   },
   methods: {
     ...mapMutations(['SET_MESSAGE', 'SET_SNACK']),
+    logout() {
+      this.SET_MESSAGE({
+        protocol: 199,
+      })
+      this.$router.push({ name: 'Login' })
+    },
     update() {
       if (this.updating) {
         // alterar cadastro
@@ -149,5 +159,9 @@ export default {
   margin-right: 20%;
   margin-top: auto;
   margin-bottom: auto;
+}
+.button-wrapper {
+  display: flex;
+  flex-direction: column;
 }
 </style>
