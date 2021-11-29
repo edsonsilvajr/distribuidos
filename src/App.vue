@@ -68,7 +68,7 @@ export default {
 
     this.socket.on('data', (response) => {
       console.log('Recebido:' + response)
-      this.SET_INCOMINGMESSAGE(response)
+      this.SET_INCOMINGMESSAGE(response.toString())
     })
 
     this.socket.on('close', () => {
@@ -94,9 +94,7 @@ export default {
     Disconnect() {
       this.socket.destroy()
       this.conectado = false
-      if (this.$router.history.current.path != '/') {
-        this.$router.push({ name: 'Dashboard' })
-      }
+      this.$router.push({ name: 'Dashboard' })
     },
   },
   computed: {
