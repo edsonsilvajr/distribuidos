@@ -62,8 +62,8 @@ export default {
 
   mounted() {
     this.socket = new net.Socket()
-    this.ip = 'localhost'
-    this.porta = '16314'
+    this.ip = '10.20.50.23'
+    this.porta = '22000'
     this.conectado = false
 
     this.socket.on('data', (response) => {
