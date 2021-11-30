@@ -65,9 +65,11 @@ export default {
     this.ip = '10.20.50.23'
     this.porta = '22000'
     this.conectado = false
+    this.socket.setEncoding("utf8")
 
     this.socket.on('data', (response) => {
       console.log('Recebido:' + response)
+      response = response.substring(response.indexOf("{"));
       this.SET_INCOMINGMESSAGE(response.toString())
     })
 
@@ -81,7 +83,7 @@ export default {
     ...mapMutations(['SET_MESSAGE', 'SET_INCOMINGMESSAGE']),
     sendMessage(mensagem) {
       console.log('Enviado:' + mensagem)
-      this.socket.write(JSON.stringify(mensagem) + '\n')
+      this.socket.write(JSON.stringify(mensagem) + '\n', "utf8")
     },
     Connect() {
       this.message = true
