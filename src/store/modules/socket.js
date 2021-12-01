@@ -1,7 +1,12 @@
+import Vue from 'vue'
+
 export const socket = {
   state: () => ({
     message: '',
-    incomingMessage: null,
+    incomingMessage: {
+      message: null,
+      timestamp: null,
+    },
     snack: null,
     close: false,
   }),
@@ -10,7 +15,10 @@ export const socket = {
       state.message = payload
     },
     SET_INCOMINGMESSAGE(state, payload) {
-      state.incomingMessage = payload
+      Vue.set(state, 'incomingMessage', {
+        message: payload,
+        timestamp: new Date().getTime(),
+      })
     },
     SET_SNACK(state, payload) {
       state.snack = payload

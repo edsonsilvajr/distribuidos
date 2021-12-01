@@ -25,9 +25,11 @@ export default {
   },
   watch: {
     snack(snack) {
-      this.show = true
-      this.message = snack.message
-      this.color = snack.erro ? 'red' : 'green'
+      if (snack != '') {
+        this.show = true
+        this.message = snack.message
+        this.color = snack.erro ? 'red' : 'green'
+      }
     },
   },
 }

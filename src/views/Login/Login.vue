@@ -42,7 +42,7 @@ export default {
     }
   },
   methods: {
-    ...mapMutations(['SET_MESSAGE', 'SET_SNACK', 'DISCONNECT']),
+    ...mapMutations(['SET_MESSAGE', 'SET_SNACK', 'SET_USER', 'DISCONNECT']),
     showAll() {
       this.DISCONNECT()
     },
@@ -78,13 +78,16 @@ export default {
   },
   watch: {
     mensagem(value) {
-      const json = JSON.parse(value.toString('utf8').replace('\r', ''))
+      const json = JSON.parse(
+        value['message'].toString('utf8').replace('\r', '')
+      )
       if (typeof json === 'object') {
         const status = json.message.result
         const protocol = json.protocol
         if (status) {
           if (protocol == 101) {
             this.SET_SNACK({ message: 'Logado com sucesso!', erro: false })
+            this.SET_USER({ username: this.usuario, isAdmin: true })
             this.$router.push({ name: 'Landing' })
           }
           if (protocol == 701) {
