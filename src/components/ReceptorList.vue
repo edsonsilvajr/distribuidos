@@ -83,8 +83,12 @@ export default {
   methods: {
     ...mapMutations(['SET_MESSAGE', 'SET_SNACK']),
     request() {
+      console.log("teste")
       this.SET_MESSAGE({
         protocol: 400,
+        message: {
+          filter: { }
+          }
       })
     },
     donation() {

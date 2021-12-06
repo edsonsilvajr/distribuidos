@@ -91,7 +91,7 @@ export default {
       this.SET_MESSAGE({
         protocol: 199,
       })
-      this.$router.push({ name: 'Login' })
+      this.$router.push({ name: 'Login' }).catch(()=>{});
     },
     teste() {
       console.log(this.user)

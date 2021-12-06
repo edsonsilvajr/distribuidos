@@ -88,7 +88,7 @@ export default {
           if (protocol == 101) {
             this.SET_SNACK({ message: 'Logado com sucesso!', erro: false })
             this.SET_USER({ username: this.usuario, isAdmin: true })
-            this.$router.push({ name: 'Landing' })
+            this.$router.push({ name: 'Landing' }).catch(()=>{});
           }
           if (protocol == 701) {
             this.SET_SNACK({ message: 'Cadastrado com sucesso!', erro: false })

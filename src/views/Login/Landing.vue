@@ -38,7 +38,7 @@ export default {
       this.SET_MESSAGE({
         protocol: 199,
       })
-      this.$router.push({ name: 'Login' })
+      this.$router.push({ name: 'Login' }).catch(()=>{});
     },
     showAll() {
       console.log(this.user)
@@ -46,6 +46,9 @@ export default {
     deleteUser() {
       this.SET_MESSAGE({
         protocol: 900,
+        message: { 
+          username: this.user.username,
+        },
       })
     },
   },
@@ -62,7 +65,7 @@ export default {
       )
       if (json.protocol == 901) {
         this.SET_SNACK({ message: 'Usuário DELETADO!', erro: false })
-        this.$router.push({ name: 'Login' })
+        this.$router.push({ name: 'Login' }).catch(()=>{});
       }
       if (json.protocol == 902) {
         this.SET_SNACK({ mensagem: json.message.reason, erro: true })

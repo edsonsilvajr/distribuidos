@@ -91,13 +91,13 @@ export default {
       console.log('conectando em ', { port: this.porta, host: this.ip })
       this.socket.connect({ host: this.ip, port: this.porta }, () => {
         this.conectado = true
-        this.$router.push({ name: 'Login' })
+        this.$router.push({ name: 'Login' }).catch(()=>{});
       })
     },
     Disconnect() {
       this.socket.destroy()
       this.conectado = false
-      this.$router.push({ name: 'Dashboard' })
+      this.$router.push({ name: 'Dashboard' }).catch(()=>{});
     },
   },
   computed: {
