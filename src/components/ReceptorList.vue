@@ -98,7 +98,7 @@ export default {
       }
 
       this.SET_MESSAGE({
-        protocol: 500,
+        protocol: 510,
         message,
       })
       this.dialog = false
